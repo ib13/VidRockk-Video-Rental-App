@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Rental App</title>
+</head>
+<body>
+<a href="{% url 'index' %}"><h1>Home</h1></a>
+{% if request.user.is_authenticated %}
+    <p>Logged In as {{ request.user.username }}</p>
+    <a href="{% url 'logout' %}"><p>Logout</p></a>
+{% else %}
+    <a href="{% url 'login' %}"><p>Login</p></a>
+{% endif %}
+
+<a href="{% url 'register' %}"><p>Register</p></a>
+<a href="http://localhost:8000/admin/login/?next=/admin/" target="_blank"><p>Admin Panel</p></a>
+<a href="{% url 'videoform' %}"><p>Insert a Video</p></a>
+
+{% block content %}
+{% endblock %}
+</body>
+</html>
