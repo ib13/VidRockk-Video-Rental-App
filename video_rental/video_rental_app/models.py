@@ -12,7 +12,7 @@ class Video(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=300, blank=True)
-    actual_video = models.FileField()
+    actual_video = models.FileField(blank=True)
 
     def __str__(self):
         return self.title
