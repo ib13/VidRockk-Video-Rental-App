@@ -7,6 +7,25 @@ from .forms import UserRegisterForm, VideoForm, UserLoginForm, RatingForm
 from django.contrib.auth import login, logout, authenticate
 
 
+class MusicPlayer(View):
+    def get(self, request):
+        videos = Video.objects.all()
+        video_title = []
+        video_view = []
+        for i in videos:
+            video_title += [i.title]
+            video_view += [i.actual_video.url]
+        length = len(videos)-1
+        cont_dict = {
+            'videos':videos,
+            'video_view': video_view,
+            'video_title': video_title,
+            'length':length,
+        }
+        print(video_view)
+        return render(request, 'video_rental_app/Music Player.html', context=cont_dict)
+
+
 # @login_required
 class VideoFormFill(View):
     def get(self, request):
@@ -21,7 +40,7 @@ class VideoFormFill(View):
         return render(request, 'video_rental_app/videoform.html', context=cont_dict)
 
     def post(self, request):
-        form = VideoForm(request.POST,request.FILES)
+        form = VideoForm(request.POST, request.FILES)
         if form.is_valid():
             print("Valid")
             # form.save(commit=True)
@@ -93,8 +112,13 @@ class LogoutView(View):
 
 def index(request):
     videos = Video.objects.all()
+    video_list = []
+    for i in videos:
+        video_list += [i.title]
+        print(video_list)
     cont_dict = {
         'videos': videos,
+        'video_list': video_list,
     }
     # Video.objects.create(title='ABC',author='XYZ',description='This a video',rating=5)
 

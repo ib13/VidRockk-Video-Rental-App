@@ -2,7 +2,11 @@
 {% block content %}
     <h1>Details for {{ detail_view.title }}</h1>
     <h2>Description: {{ detail_view.description }}</h2>
-    <a href="{{ detail_view.actual_video.url }}"><p>Play {{ detail_view.title }}</p></a>
+    {% if detail_view.actual_video %}
+{#        <a href="{{ detail_view.actual_video.url }}"><p>Play {{ detail_view.title }}</p></a>#}
+        <audio controls="controls" src="{{ detail_view.actual_video.url }}">
+        </audio>
+    {% endif %}
     {% for i in details %}
         <p>Rating: {{ i.rating }}</p>
     {% endfor %}

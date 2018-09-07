@@ -10,4 +10,5 @@ urlpatterns = [
     path('register/', views.RegisterView.as_view(), name='register'),
     path('videoform/', views.VideoFormFill.as_view(), name='videoform'),
     # path('<int:id>/rating', views.detail, name='rating'),
+    path('music_player/',views.MusicPlayer.as_view(),name='music_player')
 ]

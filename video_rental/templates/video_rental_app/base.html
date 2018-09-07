@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Video Rental App</title>
+    <link rel="stylesheet" href="{% static 'video_rental_app/css/base.css' %}">
 </head>
 <body>
 <a href="{% url 'index' %}"><h1>Home</h1></a>
@@ -16,6 +18,8 @@
 <a href="{% url 'register' %}"><p>Register</p></a>
 <a href="http://localhost:8000/admin/login/?next=/admin/" target="_blank"><p>Admin Panel</p></a>
 <a href="{% url 'videoform' %}"><p>Insert a Video</p></a>
+<a href="{% url 'music_player' %}"><p>Go to Player</p></a>
+
 
 {% block content %}
 {% endblock %}
