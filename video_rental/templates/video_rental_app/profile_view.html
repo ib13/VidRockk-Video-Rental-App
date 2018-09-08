@@ -1,0 +1,19 @@
+{% extends 'video_rental_app/base.html' %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <h3>User Info</h3>
+        <a href="{{ user1.profile_pic.url }}"><img src="{{ user1.profile_pic.url }}" alt="profile pic" width="300px"></a>
+        <p>Username: {{ user.username }}</p>
+        <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Age: {{ user1.age}}</p>
+    {% else %}
+        <h3>Login to view profile</h3>
+    {% endif %}
+{% endblock %}
+
+
+
+
+
+

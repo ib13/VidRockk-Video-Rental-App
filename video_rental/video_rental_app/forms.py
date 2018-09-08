@@ -20,10 +20,11 @@ class RatingForm(forms.ModelForm):
 
 class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
-
+    age=forms.IntegerField()
+    profile_pic=forms.ImageField()
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password']
         help_texts = {
             'username': None,
         }

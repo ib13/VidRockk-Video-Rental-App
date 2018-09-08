@@ -4,8 +4,8 @@
     <h2>Description: {{ detail_view.description }}</h2>
     {% if detail_view.actual_video %}
 {#        <a href="{{ detail_view.actual_video.url }}"><p>Play {{ detail_view.title }}</p></a>#}
-        <audio controls="controls" src="{{ detail_view.actual_video.url }}">
-        </audio>
+        <video controls="controls" src="{{ detail_view.actual_video.url }}">
+        </video>
     {% endif %}
     {% for i in details %}
         <p>Rating: {{ i.rating }}</p>

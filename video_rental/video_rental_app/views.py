@@ -1,29 +1,26 @@
 # from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from .models import Video, Rating
+from .models import Video, Rating, UserInfo
 from django.shortcuts import get_object_or_404
 from .forms import UserRegisterForm, VideoForm, UserLoginForm, RatingForm
 from django.contrib.auth import login, logout, authenticate
 
 
-class MusicPlayer(View):
-    def get(self, request):
-        videos = Video.objects.all()
-        video_title = []
-        video_view = []
-        for i in videos:
-            video_title += [i.title]
-            video_view += [i.actual_video.url]
-        length = len(videos)-1
-        cont_dict = {
-            'videos':videos,
-            'video_view': video_view,
-            'video_title': video_title,
-            'length':length,
-        }
-        print(video_view)
-        return render(request, 'video_rental_app/Music Player.html', context=cont_dict)
+class ProfileView(View):
+    def get(self, request, username):
+        if request.user.is_authenticated:
+            user = get_object_or_404(User, username=username)
+            user1 = get_object_or_404(UserInfo, user=user)
+            cont_dict = {
+                'user1': user1,
+                'user':user,
+            }
+        else:
+            cont_dict = {}
+        return render(request, 'video_rental_app/profile_view.html', context=cont_dict)
+
 
 
 # @login_required
@@ -63,13 +60,17 @@ class RegisterView(View):
         return render(request, 'video_rental_app/register.html', context=cont_dict)
 
     def post(self, request):
-        form = UserRegisterForm(request.POST)
+        form = UserRegisterForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save(commit=False)
+            username = request.POST['username']
             password = request.POST['password']
+            age = request.POST['age']
+            profile_pic = request.FILES['profile_pic']
             obj.set_password(password)
             obj.save()
             user = authenticate(username=obj.username, password=password)
+            UserInfo.objects.create(user=user, age=age, profile_pic=profile_pic)
             if user is not None:
                 login(request, user)
                 return redirect('index')
