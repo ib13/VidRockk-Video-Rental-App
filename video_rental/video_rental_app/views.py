@@ -1,11 +1,32 @@
-# from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from .models import Video, Rating, UserInfo
+from .models import Video, Rating, UserInfo, RatingUser
 from django.shortcuts import get_object_or_404
-from .forms import UserRegisterForm, VideoForm, UserLoginForm, RatingForm
+from .forms import UserRegisterForm, VideoForm, UserLoginForm, RatingForm, UserEditForm
 from django.contrib.auth import login, logout, authenticate
+
+
+class UserEditView(View):
+    def get(self, request):
+        form = UserEditForm(instance=request.user)
+        cont_dict = {
+            'form': form,
+        }
+        return render(request, 'video_rental_app/profile_edit.html', context=cont_dict)
+
+    def post(self, request):
+        form = UserEditForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            x=UserInfo.objects.get(user=obj)
+            x.profile_pic=request.FILES['profile_pic']
+            x.age=request.POST['age']
+            obj.save()
+            x.save()
+            return redirect('profile_view',request.user.username)
+        else:
+            return redirect('edit_profile')
 
 
 class ProfileView(View):
@@ -15,12 +36,11 @@ class ProfileView(View):
             user1 = get_object_or_404(UserInfo, user=user)
             cont_dict = {
                 'user1': user1,
-                'user':user,
+                'user': user,
             }
         else:
             cont_dict = {}
         return render(request, 'video_rental_app/profile_view.html', context=cont_dict)
-
 
 
 # @login_required
@@ -63,7 +83,6 @@ class RegisterView(View):
         form = UserRegisterForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save(commit=False)
-            username = request.POST['username']
             password = request.POST['password']
             age = request.POST['age']
             profile_pic = request.FILES['profile_pic']
@@ -144,13 +163,15 @@ class DetailsView(View):
         else:
             avg_rating = 'Not Rated'
         # details=details[:3]                     #Show only 3 ratings
+        userrating=RatingUser.objects.filter(user=request.user.username,rating=details)
         if request.user.is_authenticated:
             form = RatingForm()
             cont_dict = {
                 'detail_view': detail_view,
                 'details': details,
                 'avg_rating': avg_rating,
-                'form': form
+                'form': form,
+                'userrating': userrating,
             }
         else:
             cont_dict = {
@@ -163,10 +184,13 @@ class DetailsView(View):
 
     def post(self, request, id):
         form = RatingForm(request.POST)
+
         if form.is_valid():
             obj = form.save(commit=False)
             obj.video = Video.objects.get(id=id)
             obj.save()
+            x = RatingUser.objects.create(rating=obj, user=request.user.username)
+            x.save()
             return redirect('detail', id)
         else:
             return redirect('detail', id)

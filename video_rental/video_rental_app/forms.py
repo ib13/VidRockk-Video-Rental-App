@@ -1,8 +1,19 @@
 from django import forms
-from .models import Video, Rating
-from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.models import User
+from .models import Video, Rating, UserInfo
 
-User = get_user_model()
+
+class UserEditForm(UserChangeForm):
+    age = forms.IntegerField()
+    profile_pic = forms.ImageField()
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'password']
+        help_texts = {
+            'password': None,
+        }
 
 
 class VideoForm(forms.ModelForm):
@@ -20,11 +31,12 @@ class RatingForm(forms.ModelForm):
 
 class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
-    age=forms.IntegerField()
-    profile_pic=forms.ImageField()
+    age = forms.IntegerField()
+    profile_pic = forms.ImageField()
+
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'password']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password', 'age', 'profile_pic']
         help_texts = {
             'username': None,
         }

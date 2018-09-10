@@ -7,6 +7,9 @@
         <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
         <p>Email: {{ user.email }}</p>
         <p>Age: {{ user1.age}}</p>
+        {% if user == request.user %}
+            <p><a href="{% url 'edit_profile' %}">Click Here to edit profile</a></p>
+        {% endif %}
     {% else %}
         <h3>Login to view profile</h3>
     {% endif %}

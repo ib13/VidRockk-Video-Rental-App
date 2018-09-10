@@ -4,20 +4,25 @@
     <h2>Description: {{ detail_view.description }}</h2>
     {% if detail_view.actual_video %}
 {#        <a href="{{ detail_view.actual_video.url }}"><p>Play {{ detail_view.title }}</p></a>#}
-        <video controls="controls" src="{{ detail_view.actual_video.url }}">
+        <video controls="controls" width="700px" src="{{ detail_view.actual_video.url }}">
         </video>
     {% endif %}
     {% for i in details %}
         <p>Rating: {{ i.rating }}</p>
     {% endfor %}
     <p>Average Rating: {{ avg_rating }}</p>
-    {% if request.user.is_authenticated %}
-    <p>Rate the app here: </p>
-    <form enctype="multipart/form-data" action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="submit">
-    </form>
+    {% if request.user.is_authenticated%}
+        {% if userrating %}
+            <p>You rated the app</p>
+        {% else %}
+            <p>Rate the app here: </p>
+        <form enctype="multipart/form-data" action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="submit">
+        </form>
+        {% endif %}
+
     {% else %}
         <p>Login to Rate</p>
     {% endif %}

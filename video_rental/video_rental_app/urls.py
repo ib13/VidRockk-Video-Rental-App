@@ -11,4 +11,5 @@ urlpatterns = [
     path('videoform/', views.VideoFormFill.as_view(), name='videoform'),
     # path('<int:id>/rating', views.detail, name='rating'),
     path('profile/<slug:username>',views.ProfileView.as_view(),name='profile_view'),
+    path('editprofile/',views.UserEditView.as_view(),name='edit_profile'),
 ]
