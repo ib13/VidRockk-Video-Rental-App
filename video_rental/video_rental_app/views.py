@@ -1,30 +1,117 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from .models import Video, Rating, UserInfo, RatingUser
+from .models import Video, Rating, UserInfo, BuyVideo
 from django.shortcuts import get_object_or_404
-from .forms import UserRegisterForm, VideoForm, UserLoginForm, RatingForm, UserEditForm
+from .forms import UserRegisterForm, VideoForm, UserLoginForm, RatingForm, UserEditForm, BuyForm, VideoEditForm
 from django.contrib.auth import login, logout, authenticate
+
+
+class EditVideo(View):
+    def get(self, request, id):
+        video = get_object_or_404(Video, id=id)
+        form = VideoEditForm(initial={
+            'title': video.title,
+            'description': video.description,
+            'price': video.price,
+        })
+        cont_dict = {
+            'form': form,
+            'video': video,
+        }
+        return render(request, 'video_rental_app/edit_video.html', context=cont_dict)
+
+    def post(self, request, id):
+        form = VideoEditForm(request.POST)
+        if form.is_valid():
+            video = get_object_or_404(Video, id=id)
+            video.price = request.POST['price']
+            video.description = request.POST['description']
+            video.title = request.POST['title']
+            video.save()
+            return redirect('detail', id)
+        else:
+            return redirect('detail', id)
+
+
+
+class BuyPost(View):
+    def post(self, request, id):
+        buyform = BuyForm(request.POST)
+        if buyform.is_valid():
+            obj = buyform.save(commit=False)
+            obj.video = Video.objects.get(id=id)
+            obj.buyer = request.user.username
+            obj.save()
+            return redirect('detail', id)
+        else:
+            return redirect('detail', id)
+
+
+class RatingPost(View):
+    def post(self, request, id):
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.video = Video.objects.get(id=id)
+            obj.rating_user = request.user.username
+            obj.save()
+            return redirect('detail', id)
+        else:
+            return redirect('detail', id)
+
+
+class BoughtList(View):
+    def get(self, request):
+        bought = BuyVideo.objects.filter(buyer=request.user.username)
+        cont_dict = {
+            'bought': bought,
+        }
+        return render(request, 'video_rental_app/boughtlist.html', context=cont_dict)
+
+
+class BuyList(View):
+    def get(self, request):
+        video = Video.objects.filter(user=request.user)
+        buyfinal = []
+        for i in video:
+            buy = BuyVideo.objects.filter(video=i)
+            buyfinal.append(buy)
+
+        money = 0
+        for i in buyfinal:
+            for j in i:
+                money += j.video.price
+        cont_dict = {
+            'buy': buyfinal,
+            'money': money,
+        }
+        return render(request, 'video_rental_app/buylist.html', context=cont_dict)
 
 
 class UserEditView(View):
     def get(self, request):
-        form = UserEditForm(instance=request.user)
-        cont_dict = {
-            'form': form,
-        }
+        if request.user.is_authenticated:
+            form = UserEditForm(instance=request.user, initial={
+                'age': UserInfo.objects.get(user=request.user).age,
+                'profile_pic': UserInfo.objects.get(user=request.user).profile_pic})
+            cont_dict = {
+                'form': form,
+            }
+        else:
+            cont_dict = {}
         return render(request, 'video_rental_app/profile_edit.html', context=cont_dict)
 
     def post(self, request):
         form = UserEditForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             obj = form.save(commit=False)
-            x=UserInfo.objects.get(user=obj)
-            x.profile_pic=request.FILES['profile_pic']
-            x.age=request.POST['age']
+            x = UserInfo.objects.get(user=obj)
+            x.profile_pic = request.FILES['profile_pic']
+            x.age = request.POST['age']
             obj.save()
             x.save()
-            return redirect('profile_view',request.user.username)
+            return redirect('profile_view', request.user.username)
         else:
             return redirect('edit_profile')
 
@@ -135,7 +222,7 @@ def index(request):
     video_list = []
     for i in videos:
         video_list += [i.title]
-        print(video_list)
+        # print(video_list)
     cont_dict = {
         'videos': videos,
         'video_list': video_list,
@@ -152,6 +239,8 @@ class DetailsView(View):
         # details=Rating.objects.get_list(video=detail_view)          #Wrong
         # details=Rating.objects.all()                                #Show all the objects
         details = Rating.objects.filter(video=detail_view)
+        user_detail = Rating.objects.filter(video=detail_view, rating_user=request.user.username)
+        buy = BuyVideo.objects.filter(buyer=request.user.username, video=detail_view)
 
         avg_rating = 0
 
@@ -163,34 +252,26 @@ class DetailsView(View):
         else:
             avg_rating = 'Not Rated'
         # details=details[:3]                     #Show only 3 ratings
-        userrating=RatingUser.objects.filter(user=request.user.username,rating=details)
+        # userrating=RatingUser.objects.filter(user=request.user.username,rating=details)
         if request.user.is_authenticated:
             form = RatingForm()
+            buyform = BuyForm()
             cont_dict = {
                 'detail_view': detail_view,
                 'details': details,
                 'avg_rating': avg_rating,
                 'form': form,
-                'userrating': userrating,
+                # 'userrating': userrating,
+                'buyform': buyform,
+                'buy': buy,
+                'user_detail': user_detail,
             }
         else:
             cont_dict = {
                 'detail_view': detail_view,
                 'details': details,
                 'avg_rating': avg_rating,
+                'buy': buy,
             }
 
         return render(request, 'video_rental_app/detail.html', context=cont_dict)
-
-    def post(self, request, id):
-        form = RatingForm(request.POST)
-
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.video = Video.objects.get(id=id)
-            obj.save()
-            x = RatingUser.objects.create(rating=obj, user=request.user.username)
-            x.save()
-            return redirect('detail', id)
-        else:
-            return redirect('detail', id)

@@ -1,12 +1,26 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
-from .models import Video, Rating, UserInfo
+
+from .models import Video, Rating, UserInfo, BuyVideo
+
+
+class VideoEditForm(forms.ModelForm):
+    class Meta:
+        model = Video
+        fields = ['title', 'price', 'description']
+
+
+class BuyForm(forms.ModelForm):
+    class Meta:
+        model = BuyVideo
+        fields = []
 
 
 class UserEditForm(UserChangeForm):
     age = forms.IntegerField()
-    profile_pic = forms.ImageField()
+    profile_pic = forms.ImageField(required=False)
+    password = forms.CharField(widget=forms.HiddenInput)
 
     class Meta:
         model = User
@@ -20,7 +34,7 @@ class VideoForm(forms.ModelForm):
     class Meta:
         model = Video
         # fields = '__all__'
-        fields = ['title', 'description', 'actual_video']
+        fields = ['title', 'description', 'preview_video', 'actual_video', 'price']
 
 
 class RatingForm(forms.ModelForm):

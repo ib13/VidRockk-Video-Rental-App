@@ -1,0 +1,19 @@
+{% extends 'video_rental_app/base.html' %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <h1>Your purchases:</h1>
+        {% for i in bought %}
+            <p>Video: <a href="{% url 'detail' i.video.id %}">{{ i.video.title }}</a></p>
+            <p>Author: <a href="{% url 'profile_view' i.video.user.username %}">{{ i.video.user.username }}</a></p>
+        {% endfor %}
+    {% else %}
+        <h2>Login to see purchased videos.</h2>
+    {% endif %}
+
+{% endblock %}
+
+
+
+
+
+
