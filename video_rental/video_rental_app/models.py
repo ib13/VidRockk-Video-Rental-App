@@ -17,7 +17,7 @@ class Video(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=300, blank=True)
     actual_video = models.FileField()
-    preview_video = models.FileField(blank=True)
+    preview_video = models.FileField()
     price = models.IntegerField()
 
     def __str__(self):
@@ -30,7 +30,7 @@ class Rating(models.Model):
     rating_user = models.CharField(max_length=20)
 
     def __str__(self):
-        return str(self.video) + " : " + str(self.rating)
+        return self.rating_user+" gave "+str(self.rating)+" rating for the video: "+str(self.video.title)
 
 
 # class RatingUser(models.Model):

@@ -1,10 +1,21 @@
 from django.contrib.auth.models import User
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from .models import Video, Rating, UserInfo, BuyVideo
 from django.shortcuts import get_object_or_404
 from .forms import UserRegisterForm, VideoForm, UserLoginForm, RatingForm, UserEditForm, BuyForm, VideoEditForm
 from django.contrib.auth import login, logout, authenticate
+
+
+class DeleteVideo(View):
+    def post(self,request,id):
+        video = get_object_or_404(Video, id=id)
+        if request.user == video.user:
+            video.delete()
+            return redirect('index')
+        else:
+            raise Http404()
 
 
 class EditVideo(View):
@@ -252,7 +263,6 @@ class DetailsView(View):
         else:
             avg_rating = 'Not Rated'
         # details=details[:3]                     #Show only 3 ratings
-        # userrating=RatingUser.objects.filter(user=request.user.username,rating=details)
         if request.user.is_authenticated:
             form = RatingForm()
             buyform = BuyForm()

@@ -9,6 +9,9 @@ class VideoEditForm(forms.ModelForm):
     class Meta:
         model = Video
         fields = ['title', 'price', 'description']
+        labels = {
+            'price': 'Price(in Rs.)',
+        }
 
 
 class BuyForm(forms.ModelForm):
@@ -35,6 +38,9 @@ class VideoForm(forms.ModelForm):
         model = Video
         # fields = '__all__'
         fields = ['title', 'description', 'preview_video', 'actual_video', 'price']
+        labels = {
+            'price': 'Price(in Rs.)',
+        }
 
 
 class RatingForm(forms.ModelForm):

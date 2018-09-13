@@ -6,6 +6,11 @@
     <h2>Author: <a href="{% url 'profile_view' detail_view.user.username %}">{{ detail_view.user.username }}</a></h2>
     {% if detail_view.user == request.user %}
         <h3><a href="{% url 'editvideo' detail_view.id %}">Edit Video Details</a></h3>
+        <form action="{% url 'deletevideo' detail_view.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete Video">
+        </form>
+        <br>
     {% endif %}
 
     {% if buy or detail_view.user == request.user%}

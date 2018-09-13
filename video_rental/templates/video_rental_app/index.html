@@ -1,6 +1,6 @@
 {% extends 'video_rental_app/base.html' %}
 {% block content %}
-    <h1 id="abc">Welcome to the Video Rental App</h1>
+    <h1 id="abc">Videos:</h1>
     {% for i in videos %}
 {#        <p>Id: {{ i.id }}</p>#}
         <p>Title: <a href="{% url 'detail' i.id %}"> {{ i.title }} </a></p>
