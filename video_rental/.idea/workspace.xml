@@ -4,17 +4,6 @@
     <list default="true" id="39728cf5-4c67-4a18-8b96-a925734147f0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/20130904_131112.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/video_rental_app/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/video_rental_app/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/video_rental_app/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/video_rental_app/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/video_rental_app/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/video_rental_app/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/video_rental_app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/video_rental_app/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/video_rental/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/video_rental/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/video_rental/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/video_rental/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/video_rental_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/video_rental_app/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/video_rental_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/video_rental_app/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/video_rental_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/video_rental_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/video_rental_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/video_rental_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/video_rental_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/video_rental_app/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,17 +53,19 @@
     <session id="-948064938">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.38" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -83,7 +74,7 @@
           <entry key="dummy" value="4" />
           <entry key="html" value="3509" />
           <entry key="js" value="270" />
-          <entry key="py" value="6132" />
+          <entry key="py" value="6169" />
           <entry key="txt" value="5" />
         </counts>
       </usages-collector>
@@ -93,7 +84,7 @@
           <entry key="HTML" value="3509" />
           <entry key="JavaScript" value="270" />
           <entry key="PLAIN_TEXT" value="9" />
-          <entry key="Python" value="6132" />
+          <entry key="Python" value="6169" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -104,7 +95,7 @@
           <entry key="jpg" value="2" />
           <entry key="js" value="3" />
           <entry key="png" value="1" />
-          <entry key="py" value="35" />
+          <entry key="py" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -113,7 +104,7 @@
           <entry key="HTML" value="37" />
           <entry key="Image" value="5" />
           <entry key="JavaScript" value="3" />
-          <entry key="Python" value="35" />
+          <entry key="Python" value="36" />
         </counts>
       </usages-collector>
     </session>
@@ -121,6 +112,18 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/video_rental_app/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/video_rental_app/forms.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
@@ -138,11 +141,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/video_rental/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/video_rental_app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+            <state relative-caret-position="289">
+              <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
                 <marker date="1536822750658" expanded="true" signature="1067:1074" ph="..." />
@@ -164,7 +176,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/video_rental_app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="289">
               <caret line="18" column="82" selection-start-line="18" selection-start-column="82" selection-end-line="18" selection-end-column="82" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -176,27 +188,6 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/video_rental_app/migrations/0004_video_preview_video.py">
           <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/video_rental_app/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-                <marker date="1536822603033" expanded="true" signature="474:700" ph="..." />
-                <marker date="1536822603033" expanded="true" signature="722:1578" ph="..." />
-                <marker date="1536822603033" expanded="true" signature="1598:1966" ph="..." />
-                <marker date="1536822603033" expanded="true" signature="1631:1680" ph="..." />
-                <marker date="1536822603033" expanded="true" signature="1989:2357" ph="..." />
-                <marker date="1536822603033" expanded="true" signature="2380:2629" ph="..." />
-                <marker date="1536822603033" expanded="true" signature="2649:3147" ph="..." />
-                <marker date="1536822603033" expanded="true" signature="3172:4155" ph="..." />
-                <marker date="1536822603033" expanded="true" signature="4179:4613" ph="..." />
-              </folding>
-            </state>
-          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -226,15 +217,6 @@
                 <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/video_rental_app/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -284,15 +266,15 @@
         <option value="$PROJECT_DIR$/video_rental/urls.py" />
         <option value="$PROJECT_DIR$/video_rental_app/forms.py" />
         <option value="$PROJECT_DIR$/video_rental_app/apps.py" />
-        <option value="$PROJECT_DIR$/video_rental/settings.py" />
         <option value="$PROJECT_DIR$/static/video_rental_app/css/base.css" />
         <option value="$PROJECT_DIR$/templates/video_rental_app/login.html" />
         <option value="$PROJECT_DIR$/templates/video_rental_app/base.html" />
         <option value="$PROJECT_DIR$/templates/video_rental_app/index.html" />
         <option value="$PROJECT_DIR$/video_rental_app/urls.py" />
         <option value="$PROJECT_DIR$/templates/video_rental_app/detail.html" />
-        <option value="$PROJECT_DIR$/video_rental_app/views.py" />
         <option value="$PROJECT_DIR$/video_rental_app/models.py" />
+        <option value="$PROJECT_DIR$/video_rental/settings.py" />
+        <option value="$PROJECT_DIR$/video_rental_app/views.py" />
       </list>
     </option>
   </component>
@@ -316,6 +298,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -377,7 +360,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -465,7 +447,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18154311" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18683812" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -565,9 +547,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="25" column="76" lean-forward="true" selection-start-line="25" selection-start-column="76" selection-end-line="25" selection-end-column="76" />
-          <folding>
-            <element signature="e#636#668#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -620,20 +599,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/video_rental/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/video_rental_app/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -651,8 +620,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/video_rental_app/migrations/0004_video_preview_video.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/video_rental_app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/video_rental/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/video_rental_app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+            <marker date="1536822750658" expanded="true" signature="1067:1074" ph="..." />
+            <marker date="1536822750658" expanded="true" signature="1256:1447" ph="..." />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/video_rental_app/detail.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -663,7 +658,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/video_rental_app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="289">
           <caret line="18" column="82" selection-start-line="18" selection-start-column="82" selection-end-line="18" selection-end-column="82" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
@@ -671,24 +666,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/video_rental_app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-            <marker date="1536822603033" expanded="true" signature="474:700" ph="..." />
-            <marker date="1536822603033" expanded="true" signature="722:1578" ph="..." />
-            <marker date="1536822603033" expanded="true" signature="1598:1966" ph="..." />
-            <marker date="1536822603033" expanded="true" signature="1631:1680" ph="..." />
-            <marker date="1536822603033" expanded="true" signature="1989:2357" ph="..." />
-            <marker date="1536822603033" expanded="true" signature="2380:2629" ph="..." />
-            <marker date="1536822603033" expanded="true" signature="2649:3147" ph="..." />
-            <marker date="1536822603033" expanded="true" signature="3172:4155" ph="..." />
-            <marker date="1536822603033" expanded="true" signature="4179:4613" ph="..." />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/video_rental_app/migrations/0004_video_preview_video.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/video_rental_app/login.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -727,18 +706,6 @@
             <marker date="1536813588775" expanded="true" signature="1102:1172" ph="..." />
             <marker date="1536813588775" expanded="true" signature="1339:1345" ph="..." />
             <marker date="1536813588775" expanded="true" signature="1575:1580" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/video_rental_app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-            <marker date="1536822750658" expanded="true" signature="1067:1074" ph="..." />
-            <marker date="1536822750658" expanded="true" signature="1256:1447" ph="..." />
           </folding>
         </state>
       </provider>

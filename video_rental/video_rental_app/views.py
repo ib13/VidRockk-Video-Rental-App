@@ -163,7 +163,7 @@ class VideoFormFill(View):
             obj.user = request.user
             obj.save()
 
-            return redirect('index')
+            return redirect('detail',obj.id)
         else:
             print("Invalid")
             return redirect('videoform')
