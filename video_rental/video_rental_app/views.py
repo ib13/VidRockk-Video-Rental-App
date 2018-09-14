@@ -35,15 +35,20 @@ class EditVideo(View):
 
     def post(self, request, id):
         form = VideoEditForm(request.POST)
+        video = get_object_or_404(Video, id=id)
+        cont_dict = {
+            'form': form,
+            'video': video,
+        }
         if form.is_valid():
-            video = get_object_or_404(Video, id=id)
+
             video.price = request.POST['price']
             video.description = request.POST['description']
             video.title = request.POST['title']
             video.save()
             return redirect('detail', id)
         else:
-            return redirect('detail', id)
+            return render(request, 'video_rental_app/edit_video.html', context=cont_dict)
 
 
 class CommentPost(View):
@@ -169,6 +174,9 @@ class VideoFormFill(View):
 
     def post(self, request):
         form = VideoForm(request.POST, request.FILES)
+        cont_dict = {
+            'form': form,
+        }
         if form.is_valid():
             print("Valid")
             # form.save(commit=True)
@@ -179,7 +187,7 @@ class VideoFormFill(View):
             return redirect('detail', obj.id)
         else:
             print("Invalid")
-            return redirect('videoform')
+            return render(request, 'video_rental_app/videoform.html', context=cont_dict)
 
 
 class RegisterView(View):
@@ -192,6 +200,9 @@ class RegisterView(View):
 
     def post(self, request):
         form = UserRegisterForm(request.POST, request.FILES)
+        cont_dict = {
+            'form': form
+        }
         if form.is_valid():
             obj = form.save(commit=False)
             password = request.POST['password']
@@ -205,9 +216,9 @@ class RegisterView(View):
                 login(request, user)
                 return redirect('index')
             else:
-                return redirect('register')
+                return render(request, 'video_rental_app/register.html', context=cont_dict)
         else:
-            return redirect('register')
+            return render(request, 'video_rental_app/register.html', context=cont_dict)
 
 
 class LoginView(View):
@@ -220,19 +231,20 @@ class LoginView(View):
 
     def post(self, request):
         form = UserLoginForm(request.POST)
+        cont_dict={
+            'form': form,
+        }
         if form.is_valid():
             username = request.POST['username']
-            # print(username)
             password = request.POST['password']
-            # print(password)
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
                 return redirect('index')
             else:
-                return redirect('login')
+                return render(request,'video_rental_app/login.html',context=cont_dict)
         else:
-            return redirect('login')
+            return render(request, 'video_rental_app/login.html', context=cont_dict)
 
 
 class LogoutView(View):

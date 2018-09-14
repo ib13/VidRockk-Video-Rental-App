@@ -12,7 +12,6 @@
         </form>
         <br>
     {% endif %}
-
     {% if buy or detail_view.user == request.user%}
 {#        <a href="{{ detail_view.actual_video.url }}"><p>Play {{ detail_view.title }}</p></a>#}
         <video controls="controls" width="700px" src="{{ detail_view.actual_video.url }}">
@@ -45,7 +44,7 @@
                 {% if user_detail %}
                     <p>You rated the app</p>
             {% else %}
-                <p>Rate the app here: </p>
+                <p>Rate the app between 0 to 5: </p>
                 <form enctype="multipart/form-data" action="{% url 'post1' detail_view.id %}" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
