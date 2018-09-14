@@ -1,15 +1,16 @@
 from django.contrib.auth.models import User
-from django.http import HttpResponse, Http404
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from .models import Video, Rating, UserInfo, BuyVideo
+from .models import Video, Rating, UserInfo, BuyVideo, Comments
 from django.shortcuts import get_object_or_404
-from .forms import UserRegisterForm, VideoForm, UserLoginForm, RatingForm, UserEditForm, BuyForm, VideoEditForm
+from .forms import UserRegisterForm, VideoForm, UserLoginForm, RatingForm, UserEditForm, BuyForm, VideoEditForm, \
+    CommentForm
 from django.contrib.auth import login, logout, authenticate
 
 
 class DeleteVideo(View):
-    def post(self,request,id):
+    def post(self, request, id):
         video = get_object_or_404(Video, id=id)
         if request.user == video.user:
             video.delete()
@@ -44,6 +45,18 @@ class EditVideo(View):
         else:
             return redirect('detail', id)
 
+
+class CommentPost(View):
+    def post(self, request, id):
+        commentform = CommentForm(request.POST)
+        if commentform.is_valid():
+            obj = commentform.save(commit=False)
+            obj.video = get_object_or_404(Video, id=id)
+            obj.user = request.user.username
+            obj.save()
+            return redirect('detail', id)
+        else:
+            return redirect('detail', id)
 
 
 class BuyPost(View):
@@ -163,7 +176,7 @@ class VideoFormFill(View):
             obj.user = request.user
             obj.save()
 
-            return redirect('detail',obj.id)
+            return redirect('detail', obj.id)
         else:
             print("Invalid")
             return redirect('videoform')
@@ -252,6 +265,7 @@ class DetailsView(View):
         details = Rating.objects.filter(video=detail_view)
         user_detail = Rating.objects.filter(video=detail_view, rating_user=request.user.username)
         buy = BuyVideo.objects.filter(buyer=request.user.username, video=detail_view)
+        comments = Comments.objects.filter(video=detail_view)
 
         avg_rating = 0
 
@@ -266,15 +280,17 @@ class DetailsView(View):
         if request.user.is_authenticated:
             form = RatingForm()
             buyform = BuyForm()
+            commentform = CommentForm()
             cont_dict = {
                 'detail_view': detail_view,
                 'details': details,
                 'avg_rating': avg_rating,
                 'form': form,
-                # 'userrating': userrating,
                 'buyform': buyform,
                 'buy': buy,
                 'user_detail': user_detail,
+                'commentform': commentform,
+                'comments': comments,
             }
         else:
             cont_dict = {

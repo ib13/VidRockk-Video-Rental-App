@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+
+
 # from django.db.models.signals import post_save
 
 
@@ -30,7 +32,7 @@ class Rating(models.Model):
     rating_user = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.rating_user+" gave "+str(self.rating)+" rating for the video: "+str(self.video.title)
+        return self.rating_user + " gave " + str(self.rating) + " rating for the video: " + str(self.video.title)
 
 
 # class RatingUser(models.Model):
@@ -47,6 +49,15 @@ class BuyVideo(models.Model):
 
     def __str__(self):
         return self.buyer + " bought " + self.video.title
+
+
+class Comments(models.Model):
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    user = models.CharField(max_length=20)
+    comment = models.TextField(max_length=200)
+
+    def __str__(self):
+        return self.user+" commented on "+self.video.title
 
 # Trigger
 # def create_user(sender,**kwargs):

@@ -17,4 +17,5 @@ urlpatterns = [
     path('post2/<int:id>',views.BuyPost.as_view(),name='post2'),
     path('video_edit/<int:id>',views.EditVideo.as_view(),name='editvideo'),
     path('delete_video/<int:id>', views.DeleteVideo.as_view(),name='deletevideo'),
+    path('post3/<int:id>',views.CommentPost.as_view(),name='post3'),
 ]

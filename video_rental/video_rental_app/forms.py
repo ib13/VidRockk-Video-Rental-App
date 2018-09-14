@@ -1,8 +1,13 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
+from .models import Video, Rating, BuyVideo, Comments
 
-from .models import Video, Rating, UserInfo, BuyVideo
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = ['comment']
 
 
 class VideoEditForm(forms.ModelForm):
