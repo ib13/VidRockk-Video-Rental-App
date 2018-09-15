@@ -7,6 +7,11 @@
             {% for j in i %}
                 <p>Buyer: <a href="{% url 'profile_view' j.buyer %}">{{ j.buyer }}</a></p>
                 <p>Video: <a href="{% url 'detail' j.video.id %}">{{ j.video.title }}</a></p>
+                <p>Rent Date: {{ j.rent_timestamp }}</p>
+                <p>Expiry Date: {{ j.return_timestamp }}</p>
+            {% if j.return_timestamp < timezone %}
+                <p><strong>Expired</strong></p>
+            {% endif %}
                 <br>
             {% endfor %}
         {% endfor %}

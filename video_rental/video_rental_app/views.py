@@ -1,6 +1,9 @@
+from datetime import timedelta, datetime
+
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.views.generic import View
 from .models import Video, Rating, UserInfo, BuyVideo, Comments
 from django.shortcuts import get_object_or_404
@@ -71,6 +74,7 @@ class BuyPost(View):
             obj = buyform.save(commit=False)
             obj.video = Video.objects.get(id=id)
             obj.buyer = request.user.username
+            obj.return_timestamp = obj.rent_timestamp + timedelta(minutes=2)
             obj.save()
             return redirect('detail', id)
         else:
@@ -92,16 +96,17 @@ class RatingPost(View):
 
 class BoughtList(View):
     def get(self, request):
-        bought = BuyVideo.objects.filter(buyer=request.user.username)
+        bought = BuyVideo.objects.filter(buyer=request.user.username).order_by('-id')
         cont_dict = {
             'bought': bought,
+            'timezone':timezone.now(),
         }
         return render(request, 'video_rental_app/boughtlist.html', context=cont_dict)
 
 
 class BuyList(View):
     def get(self, request):
-        video = Video.objects.filter(user=request.user)
+        video = Video.objects.filter(user=request.user).order_by('-id')
         buyfinal = []
         for i in video:
             buy = BuyVideo.objects.filter(video=i)
@@ -114,6 +119,7 @@ class BuyList(View):
         cont_dict = {
             'buy': buyfinal,
             'money': money,
+            'timezone': timezone.now(),
         }
         return render(request, 'video_rental_app/buylist.html', context=cont_dict)
 
@@ -231,7 +237,7 @@ class LoginView(View):
 
     def post(self, request):
         form = UserLoginForm(request.POST)
-        cont_dict={
+        cont_dict = {
             'form': form,
         }
         if form.is_valid():
@@ -242,7 +248,7 @@ class LoginView(View):
                 login(request, user)
                 return redirect('index')
             else:
-                return render(request,'video_rental_app/login.html',context=cont_dict)
+                return render(request, 'video_rental_app/login.html', context=cont_dict)
         else:
             return render(request, 'video_rental_app/login.html', context=cont_dict)
 
@@ -277,7 +283,16 @@ class DetailsView(View):
         details = Rating.objects.filter(video=detail_view)
         user_detail = Rating.objects.filter(video=detail_view, rating_user=request.user.username)
         buy = BuyVideo.objects.filter(buyer=request.user.username, video=detail_view)
-        comments = Comments.objects.filter(video=detail_view)
+        comments = Comments.objects.filter(video=detail_view).order_by('-id')
+
+        f1 = 1
+        for i in buy:
+            if i.return_timestamp > timezone.now():
+                print(timezone.now())
+                f1 = 0
+
+        if f1 == 1:
+            buy = 0
 
         avg_rating = 0
 
@@ -310,6 +325,7 @@ class DetailsView(View):
                 'details': details,
                 'avg_rating': avg_rating,
                 'buy': buy,
+                'comments': comments,
             }
 
         return render(request, 'video_rental_app/detail.html', context=cont_dict)

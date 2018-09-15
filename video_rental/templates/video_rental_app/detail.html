@@ -63,6 +63,10 @@
             <input type="submit" value="submit">
         </form>
         <hr>
+
+    {% else %}
+        <p>Login to Rate, Buy and Add Comments</p>
+    {% endif %}
         <h3>Comments:</h3>
         <hr>
         {% for i in comments %}
@@ -70,7 +74,4 @@
             <p>User: <a href="{% url 'profile_view' i.user%}">{{ i.user }}</a></p>
             <hr>
         {% endfor %}
-    {% else %}
-        <p>Login to Rate, Buy and Add Comments</p>
-    {% endif %}
 {% endblock %}

@@ -5,6 +5,12 @@
         {% for i in bought %}
             <p>Video: <a href="{% url 'detail' i.video.id %}">{{ i.video.title }}</a></p>
             <p>Author: <a href="{% url 'profile_view' i.video.user.username %}">{{ i.video.user.username }}</a></p>
+            <p>Rent Date: {{ i.rent_timestamp }}</p>
+            <p>Expiry Date: {{ i.return_timestamp }}</p>
+            {% if i.return_timestamp < timezone %}
+                <p><strong>Expired</strong></p>
+            {% endif %}
+            <br>
         {% endfor %}
     {% else %}
         <h2>Login to see purchased videos.</h2>
