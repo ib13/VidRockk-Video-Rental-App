@@ -31,28 +31,28 @@
     <p>Average Rating: {{ avg_rating }}</p>
     {% if request.user.is_authenticated%}
         {% if detail_view.user == request.user %}
-            <p>You cannot buy or rate your own video</p>
+            <p>You cannot rent or rate your own video</p>
         {% else %}
 
             {% if not buy %}
                 <form enctype="multipart/form-data" action="{% url 'post2' detail_view.id %}" method="post">
                     {% csrf_token %}
                     {{ buyform.as_p }}
-                    <input type="submit" value="Buy Now">
+                    <input type="submit" value="Rent Now">
                 </form>
             {% else %}
                 {% if user_detail %}
                     <p>You rated the app {{ my_rating_final }} stars</p>
-            {% else %}
-                <p>Rate the app between 0 to 5: </p>
-                <form enctype="multipart/form-data" action="{% url 'post1' detail_view.id %}" method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" value="submit">
-                </form>
-            <br>
+                {% else %}
+                    <p>Rate the app between 0 to 5: </p>
+                    <form enctype="multipart/form-data" action="{% url 'post1' detail_view.id %}" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                         <input type="submit" value="submit">
+                    </form>
+                    <br>
             {% endif %}
-                <h3>Already Owned</h3>
+{#                <h3>Rented</h3>#}
             {% endif %}
         {% endif %}
         <hr>
@@ -65,7 +65,7 @@
         <hr>
 
     {% else %}
-        <p>Login to Rate, Buy and Add Comments</p>
+        <p>Login to Rate, Rent and Add Comments</p>
     {% endif %}
         <h3>Comments:</h3>
         <hr>

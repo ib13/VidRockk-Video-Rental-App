@@ -7,7 +7,7 @@ from django.utils import timezone
 
 class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    age = models.IntegerField(blank=True)
+    age = models.IntegerField()
     profile_pic = models.ImageField(blank=True)
 
     def __str__(self):
