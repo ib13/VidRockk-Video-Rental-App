@@ -3,6 +3,7 @@
     {% if request.user.is_authenticated %}
         <h1>Money earned: Rs.{{ money }}</h1>
         <h1>People who bought your video:</h1>
+        <hr>
         {% for i in buy %}
             {% for j in i %}
                 <p>Buyer: <a href="{% url 'profile_view' j.buyer %}">{{ j.buyer }}</a></p>
@@ -12,7 +13,7 @@
             {% if j.return_timestamp < timezone %}
                 <p><strong>Expired</strong></p>
             {% endif %}
-                <br>
+                <hr>
             {% endfor %}
         {% endfor %}
     {% else %}

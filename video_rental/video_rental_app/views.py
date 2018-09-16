@@ -1,5 +1,4 @@
-from datetime import timedelta, datetime
-
+from datetime import timedelta
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import render, redirect
@@ -106,10 +105,10 @@ class BoughtList(View):
 
 class BuyList(View):
     def get(self, request):
-        video = Video.objects.filter(user=request.user).order_by('-id')
+        video = Video.objects.filter(user=request.user)
         buyfinal = []
         for i in video:
-            buy = BuyVideo.objects.filter(video=i)
+            buy = BuyVideo.objects.filter(video=i).order_by('-id')
             buyfinal.append(buy)
 
         money = 0
@@ -281,16 +280,19 @@ class DetailsView(View):
         # details=Rating.objects.get_list(video=detail_view)          #Wrong
         # details=Rating.objects.all()                                #Show all the objects
         details = Rating.objects.filter(video=detail_view)
+        my_rating = Rating.objects.filter(rating_user=request.user.username)
         user_detail = Rating.objects.filter(video=detail_view, rating_user=request.user.username)
         buy = BuyVideo.objects.filter(buyer=request.user.username, video=detail_view)
         comments = Comments.objects.filter(video=detail_view).order_by('-id')
 
+        my_rating_final = 0
+        for i in my_rating:
+            my_rating_final = i.rating
         f1 = 1
         for i in buy:
             if i.return_timestamp > timezone.now():
                 print(timezone.now())
                 f1 = 0
-
         if f1 == 1:
             buy = 0
 
@@ -318,6 +320,7 @@ class DetailsView(View):
                 'user_detail': user_detail,
                 'commentform': commentform,
                 'comments': comments,
+                'my_rating_final':my_rating_final,
             }
         else:
             cont_dict = {

@@ -9,7 +9,7 @@
      <link rel="stylesheet" href="{% static 'video_rental_app/css/base.css' %}">
 </head>
 <body>
-<h1><a href="{% url 'index' %}" >Vidrockk</a></h1>
+<h1 id="header"><a href="{% url 'index' %}" >Vidrockk</a></h1>
 <hr>
 {% if request.user.is_authenticated %}
     <p style="margin: 20px">Logged In as <a href="{% url 'profile_view' request.user%}">{{ request.user.username }}</a></p>

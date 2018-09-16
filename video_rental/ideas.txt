@@ -1,5 +1,1 @@
-We can add shop feature for the people to purchase
-The user who uploaded can see the video but other person cannot, unless bought
-The user can see who bought his video and the price dashboard can be seen
-Profile option
-preview video
+rent for more days and price increase

@@ -1,16 +1,21 @@
 *{
     font-family: "Georgia", Arial, Helvetica, Sans-Serif, serif;
-    margin-left: 5px;
 }
 
 a:visited{
     color: #5e6ac7;
 
 }
+
 a:hover{
     color: #000b65;
 }
+
 a{
     color: #5e6ac7;
     text-decoration-line: none;
+}
+
+#header{
+    font-family: "Cooper Black", serif;
 }
