@@ -12,6 +12,8 @@ class CommentForm(forms.ModelForm):
 
 
 class VideoEditForm(forms.ModelForm):
+    price = forms.IntegerField(min_value=0, max_value=99999)
+
     class Meta:
         model = Video
         fields = ['title', 'price', 'description']
@@ -46,6 +48,8 @@ class UserEditForm(UserChangeForm):
 
 
 class VideoForm(forms.ModelForm):
+    price = forms.IntegerField(min_value=0, max_value=99999)
+
     class Meta:
         model = Video
         # fields = '__all__'
@@ -62,15 +66,24 @@ class VideoForm(forms.ModelForm):
 
 
 class RatingForm(forms.ModelForm):
+    STATUS_CHOICES = (
+        (1, ("1")),
+        (2, ("2")),
+        (3, ("3")),
+        (4, ("4")),
+        (5, ("5")),
+    )
+    rating = forms.ChoiceField(choices=STATUS_CHOICES)
+
     class Meta:
         model = Rating
         fields = ['rating']
 
-    def clean_rating(self):
-        data = self.cleaned_data['rating']
-        if data > 5 or data < 0:
-            raise forms.ValidationError('rating should be between 0 t0 5')
-        return data
+    # def clean_rating(self):
+    #     data = int(self.cleaned_data['rating'])
+    #     if data > 5 or data < 0:
+    #         raise forms.ValidationError('rating should be between 0 t0 5')
+    #     return data
 
 
 class UserRegisterForm(forms.ModelForm):

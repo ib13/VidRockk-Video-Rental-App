@@ -7,7 +7,7 @@ from django.utils import timezone
 
 class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    age = models.IntegerField()
+    age = models.IntegerField(max_length=3)
     profile_pic = models.ImageField(blank=True)
 
     def __str__(self):
@@ -20,7 +20,7 @@ class Video(models.Model):
     description = models.TextField(max_length=300, blank=True)
     actual_video = models.FileField()
     preview_video = models.FileField()
-    price = models.IntegerField()
+    price = models.PositiveIntegerField(max_length=5)
 
     def __str__(self):
         return self.title
@@ -28,7 +28,7 @@ class Video(models.Model):
 
 class Rating(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
-    rating = models.IntegerField()
+    rating = models.PositiveIntegerField(max_length=1)
     rating_user = models.CharField(max_length=20)
 
     def __str__(self):
@@ -44,7 +44,7 @@ class Rating(models.Model):
 
 
 class BuyVideo(models.Model):
-    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, null=True, blank=True, on_delete=models.CASCADE)
     buyer = models.CharField(max_length=20)
     rent_timestamp = models.DateTimeField(default=datetime.now)
     return_timestamp = models.DateTimeField(default=timezone.now)
