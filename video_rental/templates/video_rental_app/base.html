@@ -7,25 +7,39 @@
 {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">#}
 {#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>#}
      <link rel="stylesheet" href="{% static 'video_rental_app/css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'video_rental_app/css/index.css' %}">
 </head>
 <body>
-<h1 id="header"><a href="{% url 'index' %}" >Vidrockk</a></h1>
-<hr>
-{% if request.user.is_authenticated %}
-    <p style="margin: 20px">Logged In as <a href="{% url 'profile_view' request.user%}">{{ request.user.username }}</a></p>
-    <a href="{% url 'logout' %}" style="margin: 20px">Logout</a>
-{% else %}
-    <a href="{% url 'login' %}" style="margin: 20px">Login</a>
-{% endif %}
+<div class="container">
+    <h1 id="header"><a href="{% url 'index' %}" >Vidrockk</a></h1>
 
-<a href="{% url 'register' %}" style="margin: 20px">Register</a>
-<a href="http://localhost:8000/admin" target="_blank" style="margin: 20px">Admin Panel</a>
- {% if request.user.is_authenticated %}
- <a href="{% url 'videoform' %}" style="margin: 20px">Insert a Video</a>
-<a href="{% url 'buylist' %}" style="margin: 20px">See your buyers</a>
-<a href="{% url 'boughtlist' %}" style="margin: 20px">See your purchases</a>
- {% endif %}
-<hr>
+
+        {% if request.user.is_authenticated %}
+            <div class="login">
+                <p>Logged In as <a href="{% url 'profile_view' request.user%}">{{ request.user.username }}</a></p>
+            </div>
+        {% endif %}
+        <div class="navbar">
+        {% if request.user.is_authenticated %}
+
+            <a href="{% url 'logout' %}" style="margin: 20px">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" style="margin: 20px">Login</a>
+        {% endif %}
+
+        <a href="{% url 'register' %}" style="margin: 20px">Register</a>
+        <a href="http://localhost:8000/admin" target="_blank" style="margin: 20px">Admin Panel</a>
+         {% if request.user.is_authenticated %}
+         <a href="{% url 'videoform' %}" style="margin: 20px">Insert a Video</a>
+        <a href="{% url 'buylist' %}" style="margin: 20px">See your buyers</a>
+        <a href="{% url 'boughtlist' %}" style="margin: 20px">See your purchases</a>
+         {% endif %}
+    </div>
+    <div class="clr"></div>
+    <hr>
+</div>
 {% block content %}
 {% endblock %}
 </body>

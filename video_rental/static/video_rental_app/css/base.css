@@ -1,21 +1,79 @@
 *{
-    font-family: "Georgia", Arial, Helvetica, Sans-Serif, serif;
-}
-
-a:visited{
-    color: #5e6ac7;
-
-}
-
-a:hover{
-    color: #000b65;
-}
-
-a{
-    color: #5e6ac7;
     text-decoration-line: none;
 }
 
+body{
+    font-family: "Georgia", Arial, Helvetica, Sans-Serif, serif;
+    margin: 0px;
+}
+
+.navbar a:visited{
+    color: #d5d5d6;
+}
+
+.login a{
+    color: #9ca3a0;
+}
+
+.login a:visited{
+    color: #9ca3a0;
+}
+
+.navbar a:hover{
+    color: #9ca3a0;
+}
+
+a{
+    color: #1642d6;
+    text-decoration-line: none;
+}
+
+a:hover{
+    color: #d65b2f;
+}
+
 #header{
-    font-family: "Cooper Black", serif;
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
+    margin:0px;
+    padding: 20px 0px 20px 30px;
+    text-decoration-line: none;
+}
+
+.container{
+    background-color: #3e4140;
+    color: #d5d5d6;
+}
+.container h1 a{
+    color: #acffb2;
+}
+.container h1 a:visited{
+    color: #acffb2;
+}
+
+.navbar{
+    /*background-color: red;*/
+    float: left;
+    /*border: 1px red solid;*/
+    margin-left: 10px;
+    box-sizing: border-box;
+}
+
+.clr{
+    clear: both;
+}
+
+.login{
+    float: right;
+    /*display: inline;*/
+    /*border: 1px red solid;*/
+    padding: 0px;
+    margin: 0px 10px 0px 0px;
+    box-sizing: border-box;
+}
+
+.login p{
+    padding: 0px;
+    margin: 0px;
+    /*display: inline;*/
 }

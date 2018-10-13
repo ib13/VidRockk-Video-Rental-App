@@ -1,0 +1,38 @@
+.index_p{
+    padding: 7px 10px 7px 10px;
+    background-color: #6f6f6f;
+    color: #fff;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px #335032 solid;
+    box-sizing: border-box;
+}
+
+.index_p1{
+    width: 33.33%;
+    float: left;
+}
+
+.index_p a{
+    color: #fff;
+}
+
+.index_p a:hover{
+    color: #ddd;
+}
+
+.index hr{
+    margin: 0px;
+}
+
+.index{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.index_all{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
